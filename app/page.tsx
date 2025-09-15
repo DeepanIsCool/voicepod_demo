@@ -375,22 +375,22 @@ export default function DebtCollectionDashboard() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 flex flex-col">
-      <header className="bg-white border-b border-slate-200 px-6 py-4 shadow-sm">
+    <div className="h-screen bg-gradient-to-br from-slate-50 to-slate-100 flex flex-col overflow-hidden">
+      <header className="bg-white border-b border-slate-200 px-4 py-2 shadow-sm flex-shrink-0">
         <div className="max-w-7xl mx-auto">
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-2xl font-bold bg-gradient-to-r from-slate-900 to-slate-600 bg-clip-text text-transparent">
+              <h1 className="text-xl font-bold bg-gradient-to-r from-slate-900 to-slate-600 bg-clip-text text-transparent">
                 DebtWise AI
               </h1>
-              <p className="text-slate-600 text-sm">
+              <p className="text-slate-600 text-xs">
                 AI-powered debt collection management
               </p>
             </div>
             <div className="flex items-center space-x-4">
               <Badge
                 variant="secondary"
-                className="bg-green-100 text-green-800"
+                className="bg-green-100 text-green-800 text-xs"
               >
                 Active
               </Badge>
@@ -399,23 +399,23 @@ export default function DebtCollectionDashboard() {
         </div>
       </header>
 
-      <div className="flex-1 min-h-0">
-        <div className="max-w-7xl mx-auto p-6">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 min-h-[calc(100vh-120px)]">
+      <div className="flex-1 min-h-0 overflow-hidden">
+        <div className="max-w-7xl mx-auto h-full p-3">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 h-full">
             {/* Left Panel - Form */}
-            <div className="flex flex-col">
-              <Card className="flex-1 flex flex-col">
-                <CardHeader className="pb-4 flex-shrink-0">
-                  <CardTitle className="flex items-center text-lg font-semibold">
-                    <Users className="w-5 h-5 mr-2 text-blue-600" />
+            <div className="flex flex-col h-full">
+              <Card className="flex-1 flex flex-col overflow-hidden">
+                <CardHeader className="pb-2 flex-shrink-0">
+                  <CardTitle className="flex items-center text-base font-semibold">
+                    <Users className="w-4 h-4 mr-2 text-blue-600" />
                     Customer Information
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="flex-1 overflow-y-auto space-y-4 min-h-0">
+                <CardContent className="flex-1 overflow-y-auto space-y-3 min-h-0 text-sm">
                   {/* Basic Information */}
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                     <div>
-                      <Label htmlFor="name" className="text-sm font-medium">
+                      <Label htmlFor="name" className="text-xs font-medium">
                         Name *
                       </Label>
                       <Input
@@ -425,12 +425,12 @@ export default function DebtCollectionDashboard() {
                           handleInputChange("name", e.target.value)
                         }
                         placeholder="Enter customer name"
-                        className="mt-1"
+                        className="mt-1 h-8 text-xs"
                       />
                     </div>
 
                     <div>
-                      <Label htmlFor="phone" className="text-sm font-medium">
+                      <Label htmlFor="phone" className="text-xs font-medium">
                         Phone Number *
                       </Label>
                       <Input
@@ -440,14 +440,14 @@ export default function DebtCollectionDashboard() {
                           handleInputChange("phone", e.target.value)
                         }
                         placeholder="Enter phone number"
-                        className="mt-1"
+                        className="mt-1 h-8 text-xs"
                       />
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                     <div>
-                      <Label htmlFor="email" className="text-sm font-medium">
+                      <Label htmlFor="email" className="text-xs font-medium">
                         Email
                       </Label>
                       <Input
@@ -458,12 +458,12 @@ export default function DebtCollectionDashboard() {
                           handleInputChange("email", e.target.value)
                         }
                         placeholder="Enter email address"
-                        className="mt-1"
+                        className="mt-1 h-8 text-xs"
                       />
                     </div>
 
                     <div>
-                      <Label htmlFor="nbfcName" className="text-sm font-medium">
+                      <Label htmlFor="nbfcName" className="text-xs font-medium">
                         NBFC / Lender
                       </Label>
                       <Input
@@ -473,25 +473,25 @@ export default function DebtCollectionDashboard() {
                           handleInputChange("nbfcName", e.target.value)
                         }
                         placeholder="Enter lender name"
-                        className="mt-1"
+                        className="mt-1 h-8 text-xs"
                       />
                     </div>
                   </div>
 
-                  <Separator className="my-4" />
+                  <Separator className="my-2" />
 
                   {/* Loan Details */}
-                  <div className="space-y-4">
-                    <h3 className="text-sm font-semibold text-slate-700 flex items-center">
-                      <DollarSign className="w-4 h-4 mr-2" />
+                  <div className="space-y-3">
+                    <h3 className="text-xs font-semibold text-slate-700 flex items-center">
+                      <DollarSign className="w-3 h-3 mr-1" />
                       Loan Details
                     </h3>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                       <div>
                         <Label
                           htmlFor="originalAmount"
-                          className="text-sm font-medium"
+                          className="text-xs font-medium"
                         >
                           Original Amount
                         </Label>
@@ -502,14 +502,14 @@ export default function DebtCollectionDashboard() {
                             handleInputChange("originalAmount", e.target.value)
                           }
                           placeholder="₹0"
-                          className="mt-1"
+                          className="mt-1 h-8 text-xs"
                         />
                       </div>
 
                       <div>
                         <Label
                           htmlFor="outstandingAmount"
-                          className="text-sm font-medium"
+                          className="text-xs font-medium"
                         >
                           Outstanding Amount
                         </Label>
@@ -523,16 +523,16 @@ export default function DebtCollectionDashboard() {
                             )
                           }
                           placeholder="₹0"
-                          className="mt-1"
+                          className="mt-1 h-8 text-xs"
                         />
                       </div>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                       <div>
                         <Label
                           htmlFor="emiDueDate"
-                          className="text-sm font-medium"
+                          className="text-xs font-medium"
                         >
                           EMI Due Date
                         </Label>
@@ -543,16 +543,16 @@ export default function DebtCollectionDashboard() {
                           onChange={(e) =>
                             handleInputChange("emiDueDate", e.target.value)
                           }
-                          className="mt-1"
+                          className="mt-1 h-8 text-xs"
                         />
                       </div>
 
                       <div>
-                        <Label className="text-sm font-medium">
+                        <Label className="text-xs font-medium">
                           Days Past Due
                         </Label>
-                        <div className="mt-1 p-2 bg-slate-50 rounded-md flex items-center">
-                          <Calendar className="w-4 h-4 mr-2 text-slate-500" />
+                        <div className="mt-1 p-1 bg-slate-50 rounded-md flex items-center">
+                          <Calendar className="w-3 h-3 mr-1 text-slate-500" />
                           <Badge
                             variant={
                               dpd > 30
@@ -561,6 +561,7 @@ export default function DebtCollectionDashboard() {
                                 ? "secondary"
                                 : "default"
                             }
+                            className="text-xs"
                           >
                             {dpd} days
                           </Badge>
@@ -568,11 +569,11 @@ export default function DebtCollectionDashboard() {
                       </div>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                       <div>
                         <Label
                           htmlFor="lastPaymentDate"
-                          className="text-sm font-medium"
+                          className="text-xs font-medium"
                         >
                           Last Payment Date
                         </Label>
@@ -583,14 +584,14 @@ export default function DebtCollectionDashboard() {
                           onChange={(e) =>
                             handleInputChange("lastPaymentDate", e.target.value)
                           }
-                          className="mt-1"
+                          className="mt-1 h-8 text-xs"
                         />
                       </div>
 
                       <div>
                         <Label
                           htmlFor="lastPaymentAmount"
-                          className="text-sm font-medium"
+                          className="text-xs font-medium"
                         >
                           Last Payment Amount
                         </Label>
@@ -604,21 +605,21 @@ export default function DebtCollectionDashboard() {
                             )
                           }
                           placeholder="₹0"
-                          className="mt-1"
+                          className="mt-1 h-8 text-xs"
                         />
                       </div>
                     </div>
                   </div>
                 </CardContent>
-                <div className="p-6 pt-0 flex-shrink-0">
+                <div className="p-3 pt-0 flex-shrink-0">
                   {isOngoingCall ? (
                     <Button
                       disabled
-                      className="w-full bg-green-600 text-white shadow-lg animate-pulse"
-                      size="lg"
+                      className="w-full bg-green-600 text-white shadow-lg animate-pulse h-8"
+                      size="sm"
                     >
-                      <Phone className="w-5 h-5 mr-2" />
-                      Ongoing Call
+                      <Phone className="w-3 h-3 mr-1" />
+                      <span className="text-xs">Ongoing Call</span>
                     </Button>
                   ) : (
                     <Button
@@ -630,28 +631,28 @@ export default function DebtCollectionDashboard() {
                         !formData.name ||
                         !formData.phone
                       }
-                      className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
-                      size="lg"
+                      className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white shadow-lg disabled:opacity-50 disabled:cursor-not-allowed h-8"
+                      size="sm"
                     >
                       {isConnecting ? (
                         <>
-                          <Loader2 className="w-5 h-5 mr-2 animate-spin" />
-                          Connecting...
+                          <Loader2 className="w-3 h-3 mr-1 animate-spin" />
+                          <span className="text-xs">Connecting...</span>
                         </>
                       ) : isCallActive ? (
                         <>
-                          <Phone className="w-5 h-5 mr-2" />
-                          Call in Progress...
+                          <Phone className="w-3 h-3 mr-1" />
+                          <span className="text-xs">Call in Progress...</span>
                         </>
                       ) : !isSystemReady ? (
                         <>
-                          <Loader2 className="w-5 h-5 mr-2 animate-spin" />
-                          Processing...
+                          <Loader2 className="w-3 h-3 mr-1 animate-spin" />
+                          <span className="text-xs">Processing...</span>
                         </>
                       ) : (
                         <>
-                          <Phone className="w-5 h-5 mr-2" />
-                          Start Call
+                          <Phone className="w-3 h-3 mr-1" />
+                          <span className="text-xs">Start Call</span>
                         </>
                       )}
                     </Button>
@@ -661,25 +662,25 @@ export default function DebtCollectionDashboard() {
             </div>
 
             {/* Right Panel - Call Interface (View Only) */}
-            <div className="flex flex-col">
-              <Card className="flex-1 flex flex-col">
-                <CardHeader className="pb-3 flex-shrink-0">
-                  <CardTitle className="flex items-center justify-between text-lg">
+            <div className="flex flex-col h-full">
+              <Card className="flex-1 flex flex-col overflow-hidden">
+                <CardHeader className="pb-2 flex-shrink-0">
+                  <CardTitle className="flex items-center justify-between text-base">
                     <span>Call Management</span>
                     <div className="flex items-center space-x-2">
                       {isCallActive && (
                         <Badge
                           variant="secondary"
-                          className="bg-green-100 text-green-800"
+                          className="bg-green-100 text-green-800 text-xs"
                         >
-                          <div className="w-2 h-2 bg-green-500 rounded-full mr-2 animate-pulse"></div>
+                          <div className="w-1 h-1 bg-green-500 rounded-full mr-1 animate-pulse"></div>
                           Live
                         </Badge>
                       )}
                       {isLoadingMedia && (
                         <Badge
                           variant="secondary"
-                          className="bg-blue-100 text-blue-800"
+                          className="bg-blue-100 text-blue-800 text-xs"
                         >
                           Loading...
                         </Badge>
@@ -687,11 +688,11 @@ export default function DebtCollectionDashboard() {
                     </div>
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="flex-1 overflow-y-auto space-y-6 min-h-0">
+                <CardContent className="flex-1 overflow-y-auto space-y-4 min-h-0 text-sm">
                   {/* Recording Controls Section */}
                   <div>
-                    <div className="flex items-center justify-between mb-3">
-                      <h3 className="text-sm font-semibold text-slate-700">
+                    <div className="flex items-center justify-between mb-2">
+                      <h3 className="text-xs font-semibold text-slate-700">
                         Call Recording
                       </h3>
                       {recordingUrl && (
@@ -699,39 +700,40 @@ export default function DebtCollectionDashboard() {
                           variant="outline"
                           size="sm"
                           onClick={() => window.open(recordingUrl, "_blank")}
+                          className="h-6 px-2 text-xs"
                         >
-                          <Download className="w-4 h-4 mr-2" />
+                          <Download className="w-3 h-3 mr-1" />
                           Download
                         </Button>
                       )}
                     </div>
 
                     {recordingUrl ? (
-                      <div className="space-y-3">
-                        <audio controls className="w-full">
+                      <div className="space-y-2">
+                        <audio controls className="w-full h-6">
                           <source src={recordingUrl} type="video/mp4" />
                           Your browser does not support the audio element.
                         </audio>
                       </div>
                     ) : isCallActive ? (
-                      <div className="text-center py-6 text-slate-500 border rounded-lg bg-slate-50">
-                        <div className="w-6 h-6 mx-auto mb-2 opacity-50 bg-red-500 rounded-full animate-pulse"></div>
-                        <p className="text-sm">Recording in progress...</p>
-                        <p className="text-xs text-slate-400 mt-2">
+                      <div className="text-center py-3 text-slate-500 border rounded-lg bg-slate-50">
+                        <div className="w-4 h-4 mx-auto mb-1 opacity-50 bg-red-500 rounded-full animate-pulse"></div>
+                        <p className="text-xs">Recording in progress...</p>
+                        <p className="text-xs text-slate-400 mt-1">
                           Room: {roomName}
                         </p>
                       </div>
                     ) : (
-                      <div className="text-center py-6 text-slate-500 border rounded-lg bg-slate-50">
-                        <Download className="w-6 h-6 mx-auto mb-2 opacity-50" />
-                        <p className="text-sm">
+                      <div className="text-center py-3 text-slate-500 border rounded-lg bg-slate-50">
+                        <Download className="w-4 h-4 mx-auto mb-1 opacity-50" />
+                        <p className="text-xs">
                           Recording will appear here after the call
                         </p>
                       </div>
                     )}
 
                     {isCallActive && (
-                      <div className="text-center space-y-2 mt-4">
+                      <div className="text-center space-y-1 mt-2">
                         <p className="text-xs text-slate-500">
                           Debug: isCallActive={String(isCallActive)},
                           isOngoingCall={String(isOngoingCall)}, isPolling=
@@ -740,21 +742,22 @@ export default function DebtCollectionDashboard() {
                         <Button
                           variant="destructive"
                           onClick={endCall}
-                          className="w-full"
+                          className="w-full h-6 text-xs"
+                          size="sm"
                         >
-                          <PhoneOff className="w-4 h-4 mr-2" />
+                          <PhoneOff className="w-3 h-3 mr-1" />
                           End Call
                         </Button>
                       </div>
                     )}
                   </div>
 
-                  <Separator />
+                  <Separator className="my-2" />
 
                   {/* Transcript Section */}
                   <div>
-                    <div className="flex items-center justify-between mb-3">
-                      <h3 className="text-sm font-semibold text-slate-700">
+                    <div className="flex items-center justify-between mb-2">
+                      <h3 className="text-xs font-semibold text-slate-700">
                         Call Transcript
                       </h3>
                       {transcriptData && (
@@ -767,8 +770,9 @@ export default function DebtCollectionDashboard() {
                               "_blank"
                             )
                           }
+                          className="h-6 px-2 text-xs"
                         >
-                          <FileText className="w-4 h-4 mr-2" />
+                          <FileText className="w-3 h-3 mr-1" />
                           Download
                         </Button>
                       )}
@@ -777,18 +781,18 @@ export default function DebtCollectionDashboard() {
                     {transcriptData &&
                     transcriptData.items &&
                     transcriptData.items.length > 0 ? (
-                      <div className="space-y-3 max-h-[200px] overflow-y-auto border rounded-lg p-3 bg-slate-50">
+                      <div className="space-y-2 max-h-[180px] overflow-y-auto border rounded-lg p-2 bg-slate-50">
                         {transcriptData.items.map((item, index) => (
                           <div
                             key={item.id || index}
-                            className={`p-3 rounded-lg border-l-4 ${
+                            className={`p-2 rounded-lg border-l-2 ${
                               item.role === "assistant"
                                 ? "bg-blue-50 border-blue-400"
                                 : "bg-green-50 border-green-400"
                             }`}
                           >
                             <div className="flex items-center justify-between mb-1">
-                              <span className="text-sm font-medium">
+                              <span className="text-xs font-medium">
                                 {item.role === "assistant"
                                   ? "Agent"
                                   : "Customer"}
@@ -802,31 +806,31 @@ export default function DebtCollectionDashboard() {
                                 </Badge>
                               )}
                             </div>
-                            <p className="text-sm text-slate-700">
+                            <p className="text-xs text-slate-700">
                               {item.content.join(" ")}
                             </p>
                           </div>
                         ))}
                       </div>
                     ) : (
-                      <div className="text-center py-6 text-slate-500 border rounded-lg bg-slate-50">
-                        <FileText className="w-6 h-6 mx-auto mb-2 opacity-50" />
-                        <p className="text-sm">
+                      <div className="text-center py-3 text-slate-500 border rounded-lg bg-slate-50">
+                        <FileText className="w-4 h-4 mx-auto mb-1 opacity-50" />
+                        <p className="text-xs">
                           Transcript will appear here after the call
                         </p>
                       </div>
                     )}
                   </div>
 
-                  <Separator />
+                  <Separator className="my-2" />
 
                   {/* Outcomes Section */}
                   <div>
-                    <div className="flex items-center justify-between mb-3">
-                      <h3 className="text-sm font-semibold text-slate-700">
+                    <div className="flex items-center justify-between mb-2">
+                      <h3 className="text-xs font-semibold text-slate-700">
                         Call Outcomes
                       </h3>
-                      <div className="flex gap-2">
+                      <div className="flex gap-1">
                         {!outcomeData && roomName && (
                           <>
                             <Button
@@ -836,13 +840,14 @@ export default function DebtCollectionDashboard() {
                                 fetchAnalysisWithRetry(roomName, 1)
                               }
                               disabled={isLoadingMedia}
+                              className="h-6 px-2 text-xs"
                             >
                               {isLoadingMedia ? (
-                                <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                                <Loader2 className="w-3 h-3 mr-1 animate-spin" />
                               ) : (
-                                <BarChart3 className="w-4 h-4 mr-2" />
+                                <BarChart3 className="w-3 h-3 mr-1" />
                               )}
-                              Refresh Analysis
+                              Refresh
                             </Button>
                             <Button
                               variant="outline"
@@ -854,8 +859,9 @@ export default function DebtCollectionDashboard() {
                                 console.log("[v0] Test URL:", testUrl);
                                 window.open(testUrl, "_blank");
                               }}
+                              className="h-6 px-2 text-xs"
                             >
-                              Test URL
+                              Test
                             </Button>
                           </>
                         )}
@@ -869,8 +875,9 @@ export default function DebtCollectionDashboard() {
                                 "_blank"
                               )
                             }
+                            className="h-6 px-2 text-xs"
                           >
-                            <BarChart3 className="w-4 h-4 mr-2" />
+                            <BarChart3 className="w-3 h-3 mr-1" />
                             Download
                           </Button>
                         )}
@@ -878,7 +885,7 @@ export default function DebtCollectionDashboard() {
                     </div>
 
                     {outcomeData ? (
-                      <div className="space-y-3 max-h-[200px] overflow-y-auto border rounded-lg p-3 bg-slate-50">
+                      <div className="space-y-2 max-h-[180px] overflow-y-auto border rounded-lg p-2 bg-slate-50">
                         {Object.entries(outcomeData)
                           .filter(
                             ([key, value]) =>
@@ -890,29 +897,29 @@ export default function DebtCollectionDashboard() {
                           .map(([questionCode, answer]) => (
                             <div
                               key={questionCode}
-                              className="border-l-4 border-slate-200 pl-4 py-2 bg-white rounded"
+                              className="border-l-2 border-slate-200 pl-2 py-1 bg-white rounded"
                             >
-                              <div className="text-sm font-medium text-slate-700 mb-1">
+                              <div className="text-xs font-medium text-slate-700 mb-1">
                                 {formatQuestion(questionCode)}
                               </div>
-                              <div className="text-sm text-slate-600 bg-slate-50 p-2 rounded">
+                              <div className="text-xs text-slate-600 bg-slate-50 p-1 rounded">
                                 {formatAnswer(String(answer))}
                               </div>
                             </div>
                           ))}
                       </div>
                     ) : (
-                      <div className="text-center py-6 text-slate-500 border rounded-lg bg-slate-50">
-                        <BarChart3 className="w-6 h-6 mx-auto mb-2 opacity-50" />
-                        <p className="text-sm">
+                      <div className="text-center py-3 text-slate-500 border rounded-lg bg-slate-50">
+                        <BarChart3 className="w-4 h-4 mx-auto mb-1 opacity-50" />
+                        <p className="text-xs">
                           {roomName
                             ? "Call analysis is being generated. This may take a few minutes after the call ends."
                             : "Call analysis will appear here after the call"}
                         </p>
                         {roomName && (
-                          <p className="text-xs mt-2 text-slate-400">
-                            You can also use the "Refresh Analysis" button above
-                            to check manually.
+                          <p className="text-xs mt-1 text-slate-400">
+                            You can also use the "Refresh" button above to check
+                            manually.
                           </p>
                         )}
                       </div>
