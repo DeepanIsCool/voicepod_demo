@@ -5,6 +5,13 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Separator } from "@/components/ui/separator";
 import {
   BarChart3,
@@ -36,6 +43,7 @@ interface FormData {
   emiDueDate: string;
   lastPaymentDate: string;
   lastPaymentAmount: string;
+  loanType: string;
 }
 
 interface TranscriptItem {
@@ -58,6 +66,139 @@ interface OutcomeData {
   [key: string]: any;
 }
 
+// Mock data for different DPD scenarios
+const createDateForDPD = (dpd: number) => {
+  const today = new Date();
+  const dueDate = new Date(today);
+  dueDate.setDate(today.getDate() - dpd);
+  return dueDate.toISOString().split("T")[0];
+};
+
+const createLastPaymentDate = (dpd: number) => {
+  const today = new Date();
+  const lastPayment = new Date(today);
+  lastPayment.setDate(today.getDate() - Math.max(dpd + 15, 30));
+  return lastPayment.toISOString().split("T")[0];
+};
+
+const mockLoanData: Record<string, FormData> = {
+  // DPD 0-30 scenarios
+  personal_dpd_15: {
+    name: "Rajesh Kumar",
+    phone: "9876543210",
+    email: "rajesh.kumar@email.com",
+    nbfcName: "HDFC Credit",
+    originalAmount: "150000",
+    outstandingAmount: "125000",
+    emiDueDate: createDateForDPD(15),
+    lastPaymentDate: createLastPaymentDate(15),
+    lastPaymentAmount: "5500",
+    loanType: "Personal Loan (DPD 15)",
+  },
+  smartphone_dpd_25: {
+    name: "Priya Sharma",
+    phone: "8765432109",
+    email: "priya.sharma@email.com",
+    nbfcName: "Bajaj Finserv",
+    originalAmount: "45000",
+    outstandingAmount: "28000",
+    emiDueDate: createDateForDPD(25),
+    lastPaymentDate: createLastPaymentDate(25),
+    lastPaymentAmount: "2800",
+    loanType: "Smartphone EMI (DPD 25)",
+  },
+
+  // DPD 30-90 scenarios
+  twowheeler_dpd_45: {
+    name: "Amit Singh",
+    phone: "7654321098",
+    email: "amit.singh@email.com",
+    nbfcName: "Tata Capital",
+    originalAmount: "85000",
+    outstandingAmount: "62000",
+    emiDueDate: createDateForDPD(45),
+    lastPaymentDate: createLastPaymentDate(45),
+    lastPaymentAmount: "3200",
+    loanType: "2-Wheeler Loan (DPD 45)",
+  },
+  personal_dpd_60: {
+    name: "Meera Patel",
+    phone: "9123456789",
+    email: "meera.patel@email.com",
+    nbfcName: "ICICI Bank",
+    originalAmount: "200000",
+    outstandingAmount: "175000",
+    emiDueDate: createDateForDPD(60),
+    lastPaymentDate: createLastPaymentDate(60),
+    lastPaymentAmount: "8500",
+    loanType: "Personal Loan (DPD 60)",
+  },
+  vitanium_dpd_75: {
+    name: "Suresh Reddy",
+    phone: "8234567890",
+    email: "suresh.reddy@email.com",
+    nbfcName: "Vitanium/Bharat Plays",
+    originalAmount: "120000",
+    outstandingAmount: "98000",
+    emiDueDate: createDateForDPD(75),
+    lastPaymentDate: createLastPaymentDate(75),
+    lastPaymentAmount: "4200",
+    loanType: "Business Loan (DPD 75)",
+  },
+
+  // DPD 90-120 scenarios
+  personal_dpd_105: {
+    name: "Kavita Joshi",
+    phone: "7345678901",
+    email: "kavita.joshi@email.com",
+    nbfcName: "Axis Bank",
+    originalAmount: "300000",
+    outstandingAmount: "285000",
+    emiDueDate: createDateForDPD(105),
+    lastPaymentDate: createLastPaymentDate(105),
+    lastPaymentAmount: "12000",
+    loanType: "Personal Loan (DPD 105)",
+  },
+  smartphone_dpd_95: {
+    name: "Ravi Gupta",
+    phone: "6456789012",
+    email: "ravi.gupta@email.com",
+    nbfcName: "Bajaj Finserv",
+    originalAmount: "65000",
+    outstandingAmount: "58000",
+    emiDueDate: createDateForDPD(95),
+    lastPaymentDate: createLastPaymentDate(95),
+    lastPaymentAmount: "3800",
+    loanType: "Smartphone EMI (DPD 95)",
+  },
+
+  // DPD 120+ scenarios
+  personal_dpd_150: {
+    name: "Deepak Shah",
+    phone: "5567890123",
+    email: "deepak.shah@email.com",
+    nbfcName: "SBI",
+    originalAmount: "500000",
+    outstandingAmount: "495000",
+    emiDueDate: createDateForDPD(150),
+    lastPaymentDate: createLastPaymentDate(150),
+    lastPaymentAmount: "18000",
+    loanType: "Personal Loan (DPD 150)",
+  },
+  twowheeler_dpd_180: {
+    name: "Anjali Nair",
+    phone: "4678901234",
+    email: "anjali.nair@email.com",
+    nbfcName: "Hero FinCorp",
+    originalAmount: "95000",
+    outstandingAmount: "92000",
+    emiDueDate: createDateForDPD(180),
+    lastPaymentDate: createLastPaymentDate(180),
+    lastPaymentAmount: "4500",
+    loanType: "2-Wheeler Loan (DPD 180)",
+  },
+};
+
 export default function DebtCollectionDashboard() {
   const [formData, setFormData] = useState<FormData>({
     name: "",
@@ -69,6 +210,7 @@ export default function DebtCollectionDashboard() {
     emiDueDate: "",
     lastPaymentDate: "",
     lastPaymentAmount: "",
+    loanType: "",
   });
 
   const [isCallActive, setIsCallActive] = useState(false);
@@ -100,6 +242,12 @@ export default function DebtCollectionDashboard() {
 
   const handleInputChange = (field: keyof FormData, value: string) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
+  };
+
+  const fillMockData = (scenarioKey: string) => {
+    const mockData = mockLoanData[scenarioKey];
+    const { phone, ...dataWithoutPhone } = mockData;
+    setFormData((prev) => ({ ...prev, ...dataWithoutPhone }));
   };
 
   const generateRoomName = () => {
@@ -232,6 +380,7 @@ export default function DebtCollectionDashboard() {
         dpd: dpd.toString(),
         lastPaymentDate: formData.lastPaymentDate,
         lastPaymentAmount: formData.lastPaymentAmount,
+        loanType: formData.loanType,
       },
     };
 
@@ -412,6 +561,88 @@ export default function DebtCollectionDashboard() {
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="flex-1 overflow-y-auto space-y-3 min-h-0 text-sm">
+                  {/* DPD Scenario Selection */}
+                  <div className="space-y-3">
+                    <h3 className="text-xs font-semibold text-slate-700 flex items-center">
+                      <FileText className="w-3 h-3 mr-1" />
+                      Demo DPD Scenarios (Auto-fills form)
+                    </h3>
+
+                    <Select onValueChange={(value) => fillMockData(value)}>
+                      <SelectTrigger className="h-8 text-xs">
+                        <SelectValue placeholder="Select a DPD scenario to auto-fill form..." />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {/* DPD 0-30 */}
+                        <div className="px-2 py-1 text-xs font-semibold text-green-700 bg-green-50">
+                          DPD 0-30 (Early Stage)
+                        </div>
+                        <SelectItem value="personal_dpd_15" className="text-xs">
+                          Personal Loan (DPD 15) - Rajesh Kumar
+                        </SelectItem>
+                        <SelectItem
+                          value="smartphone_dpd_25"
+                          className="text-xs"
+                        >
+                          Smartphone EMI (DPD 25) - Priya Sharma
+                        </SelectItem>
+
+                        {/* DPD 30-90 */}
+                        <div className="px-2 py-1 text-xs font-semibold text-yellow-700 bg-yellow-50 mt-1">
+                          DPD 30-90 (Mid Stage)
+                        </div>
+                        <SelectItem
+                          value="twowheeler_dpd_45"
+                          className="text-xs"
+                        >
+                          2-Wheeler Loan (DPD 45) - Amit Singh
+                        </SelectItem>
+                        <SelectItem value="personal_dpd_60" className="text-xs">
+                          Personal Loan (DPD 60) - Meera Patel
+                        </SelectItem>
+                        <SelectItem value="vitanium_dpd_75" className="text-xs">
+                          Vitanium/Bharat Plays (DPD 75) - Suresh Reddy
+                        </SelectItem>
+
+                        {/* DPD 90-120 */}
+                        <div className="px-2 py-1 text-xs font-semibold text-orange-700 bg-orange-50 mt-1">
+                          DPD 90-120 (Late Stage)
+                        </div>
+                        <SelectItem
+                          value="smartphone_dpd_95"
+                          className="text-xs"
+                        >
+                          Smartphone EMI (DPD 95) - Ravi Gupta
+                        </SelectItem>
+                        <SelectItem
+                          value="personal_dpd_105"
+                          className="text-xs"
+                        >
+                          Personal Loan (DPD 105) - Kavita Joshi
+                        </SelectItem>
+
+                        {/* DPD 120+ */}
+                        <div className="px-2 py-1 text-xs font-semibold text-red-700 bg-red-50 mt-1">
+                          DPD 120+ (Critical Stage)
+                        </div>
+                        <SelectItem
+                          value="personal_dpd_150"
+                          className="text-xs"
+                        >
+                          Personal Loan (DPD 150) - Deepak Shah
+                        </SelectItem>
+                        <SelectItem
+                          value="twowheeler_dpd_180"
+                          className="text-xs"
+                        >
+                          2-Wheeler Loan (DPD 180) - Anjali Nair
+                        </SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+
+                  <Separator className="my-2" />
+
                   {/* Basic Information */}
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                     <div>
