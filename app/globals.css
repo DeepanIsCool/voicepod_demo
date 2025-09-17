@@ -1,7 +1,6 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
-@custom-variant dark (&:is(.dark *));
 
 :root {
   /* Enhanced Premium Color Palette */
@@ -66,68 +65,6 @@
   --shadow-md: 0 4px 6px -1px oklch(0.15 0.02 240 / 0.1), 0 2px 4px -2px oklch(0.15 0.02 240 / 0.1);
   --shadow-lg: 0 10px 15px -3px oklch(0.15 0.02 240 / 0.1), 0 4px 6px -4px oklch(0.15 0.02 240 / 0.1);
   --shadow-xl: 0 20px 25px -5px oklch(0.15 0.02 240 / 0.1), 0 8px 10px -6px oklch(0.15 0.02 240 / 0.1);
-}
-
-.dark {
-  /* Enhanced Dark Mode Palette */
-  --background: oklch(0.08 0.01 240); /* Deep navy background */
-  --foreground: oklch(0.95 0.005 240); /* Light text */
-  --card: oklch(0.1 0.015 240); /* Dark card background */
-  --card-foreground: oklch(0.9 0.01 240); /* Light card text */
-  --popover: oklch(0.08 0.01 240);
-  --popover-foreground: oklch(0.95 0.005 240);
-  
-  /* Dark Mode Primary */
-  --primary: oklch(0.65 0.15 240); /* Brighter blue for dark mode */
-  --primary-foreground: oklch(0.08 0.01 240); /* Dark text on primary */
-  
-  /* Dark Mode Secondary */
-  --secondary: oklch(0.15 0.02 240); /* Dark blue-gray */
-  --secondary-foreground: oklch(0.9 0.01 240); /* Light text on secondary */
-  
-  --muted: oklch(0.12 0.015 240); /* Dark muted background */
-  --muted-foreground: oklch(0.6 0.01 240); /* Muted text */
-  
-  /* Dark Mode Accents */
-  --accent: oklch(0.65 0.18 280); /* Bright purple accent */
-  --accent-foreground: oklch(0.08 0.01 240); /* Dark text on accent */
-  
-  /* Dark Mode Status Colors */
-  --success: oklch(0.65 0.15 140); /* Bright success green */
-  --success-foreground: oklch(0.08 0.01 140);
-  --warning: oklch(0.75 0.15 60); /* Bright warning amber */
-  --warning-foreground: oklch(0.08 0.01 60);
-  --destructive: oklch(0.65 0.18 15); /* Bright error red */
-  --destructive-foreground: oklch(0.08 0.01 15);
-  
-  /* Dark Mode Borders and Inputs */
-  --border: oklch(0.2 0.02 240); /* Subtle dark borders */
-  --input: oklch(0.1 0.015 240); /* Dark input background */
-  --ring: oklch(0.65 0.15 240 / 0.4); /* Bright focus ring */
-  
-  /* Dark Mode Chart Colors */
-  --chart-1: oklch(0.65 0.15 240);
-  --chart-2: oklch(0.65 0.18 280);
-  --chart-3: oklch(0.65 0.15 140);
-  --chart-4: oklch(0.75 0.15 60);
-  --chart-5: oklch(0.65 0.18 15);
-  
-  /* Dark Mode Sidebar */
-  --sidebar: oklch(0.06 0.01 240);
-  --sidebar-foreground: oklch(0.9 0.01 240);
-  --sidebar-primary: oklch(0.65 0.15 240);
-  --sidebar-primary-foreground: oklch(0.08 0.01 240);
-  --sidebar-accent: oklch(0.65 0.18 280);
-  --sidebar-accent-foreground: oklch(0.08 0.01 280);
-  --sidebar-border: oklch(0.2 0.02 240);
-  --sidebar-ring: oklch(0.65 0.15 240 / 0.4);
-  
-  /* Dark Mode Shadows */
-  --shadow-sm: 0 1px 2px 0 oklch(0 0 0 / 0.3);
-  --shadow: 0 1px 3px 0 oklch(0 0 0 / 0.4), 0 1px 2px -1px oklch(0 0 0 / 0.4);
-  --shadow-md: 0 4px 6px -1px oklch(0 0 0 / 0.4), 0 2px 4px -2px oklch(0 0 0 / 0.4);
-  --shadow-lg: 0 10px 15px -3px oklch(0 0 0 / 0.4), 0 4px 6px -4px oklch(0 0 0 / 0.4);
-  --shadow-xl: 0 20px 25px -5px oklch(0 0 0 / 0.4), 0 8px 10px -6px oklch(0 0 0 / 0.4);
 }
 
 @theme inline {
@@ -207,13 +144,6 @@
     -webkit-backdrop-filter: blur(12px) saturate(1.2);
     backdrop-filter: blur(12px) saturate(1.2);
     border: 1px solid rgba(220, 220, 220, 0.2);
-  }
-  
-  .dark .glass {
-    background: rgba(20, 20, 25, 0.8);
-    -webkit-backdrop-filter: blur(12px) saturate(1.2);
-    backdrop-filter: blur(12px) saturate(1.2);
-    border: 1px solid rgba(50, 50, 60, 0.3);
   }
   
   /* Enhanced focus states */

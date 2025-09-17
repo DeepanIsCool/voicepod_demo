@@ -13,6 +13,8 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Separator } from "@/components/ui/separator";
+import { Switch } from "@/components/ui/switch";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   BarChart3,
   Calendar,
@@ -20,6 +22,7 @@ import {
   Download,
   FileText,
   Loader2,
+  Menu,
   Pause,
   Phone,
   PhoneOff,
@@ -30,6 +33,7 @@ import {
   TrendingUp,
   Users,
   X,
+  Zap,
 } from "lucide-react";
 import { useEffect, useState } from "react";
 
