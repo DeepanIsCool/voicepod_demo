@@ -246,8 +246,25 @@ export default function DebtCollectionDashboard() {
 
   const fillMockData = (scenarioKey: string) => {
     const mockData = mockLoanData[scenarioKey];
-    const { phone, ...dataWithoutPhone } = mockData;
-    setFormData((prev) => ({ ...prev, ...dataWithoutPhone }));
+    const { phone, name, email, nbfcName, originalAmount, outstandingAmount, lastPaymentAmount, ...otherData } = mockData;
+    
+    // Generate random values for numeric fields
+    const randomOriginalAmount = (Math.floor(Math.random() * 400000) + 50000).toString(); // 50k to 450k
+    const randomOutstandingPercent = Math.random() * 0.4 + 0.5; // 50% to 90% outstanding
+    const randomOutstandingAmount = Math.floor(parseInt(randomOriginalAmount) * randomOutstandingPercent).toString();
+    const randomLastPaymentAmount = (Math.floor(Math.random() * 15000) + 2000).toString(); // 2k to 17k
+    
+    setFormData((prev) => ({ 
+      ...prev, 
+      ...otherData,
+      originalAmount: randomOriginalAmount,
+      outstandingAmount: randomOutstandingAmount,
+      lastPaymentAmount: randomLastPaymentAmount,
+      name: "", 
+      email: "", 
+      nbfcName: "", 
+      phone: "" 
+    }));
   };
 
   const generateRoomName = () => {
@@ -524,7 +541,7 @@ export default function DebtCollectionDashboard() {
   };
 
   return (
-    <div className="h-screen bg-gradient-to-br from-slate-50 to-slate-100 flex flex-col overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 flex flex-col">
       <header className="bg-white border-b border-slate-200 px-4 py-2 shadow-sm flex-shrink-0">
         <div className="max-w-7xl mx-auto">
           <div className="flex items-center justify-between">
@@ -548,19 +565,19 @@ export default function DebtCollectionDashboard() {
         </div>
       </header>
 
-      <div className="flex-1 min-h-0 overflow-hidden">
-        <div className="max-w-7xl mx-auto h-full p-3">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 h-full">
+      <div className="flex-1 pb-8">
+        <div className="max-w-7xl mx-auto p-3 pb-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:min-h-[calc(100vh-120px)]">
             {/* Left Panel - Form */}
-            <div className="flex flex-col h-full">
-              <Card className="flex-1 flex flex-col overflow-hidden">
+            <div className="flex flex-col">
+              <Card className="flex flex-col lg:flex-1 lg:overflow-hidden lg:h-full">
                 <CardHeader className="pb-2 flex-shrink-0">
                   <CardTitle className="flex items-center text-base font-semibold">
                     <Users className="w-4 h-4 mr-2 text-blue-600" />
                     Customer Information
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="flex-1 overflow-y-auto space-y-3 min-h-0 text-sm">
+                <CardContent className="space-y-3 text-sm lg:flex-1 lg:overflow-y-auto lg:min-h-0">
                   {/* DPD Scenario Selection */}
                   <div className="space-y-3">
                     <h3 className="text-xs font-semibold text-slate-700 flex items-center">
@@ -569,7 +586,7 @@ export default function DebtCollectionDashboard() {
                     </h3>
 
                     <Select onValueChange={(value) => fillMockData(value)}>
-                      <SelectTrigger className="h-8 text-xs">
+                      <SelectTrigger className="h-10 md:h-8 text-sm md:text-xs">
                         <SelectValue placeholder="Select a DPD scenario to auto-fill form..." />
                       </SelectTrigger>
                       <SelectContent>
@@ -578,13 +595,13 @@ export default function DebtCollectionDashboard() {
                           DPD 0-30 (Early Stage)
                         </div>
                         <SelectItem value="personal_dpd_15" className="text-xs">
-                          Personal Loan (DPD 15) - Rajesh Kumar
+                          Personal Loan (DPD 15)
                         </SelectItem>
                         <SelectItem
                           value="smartphone_dpd_25"
                           className="text-xs"
                         >
-                          Smartphone EMI (DPD 25) - Priya Sharma
+                          Smartphone EMI (DPD 25)
                         </SelectItem>
 
                         {/* DPD 30-90 */}
@@ -595,13 +612,13 @@ export default function DebtCollectionDashboard() {
                           value="twowheeler_dpd_45"
                           className="text-xs"
                         >
-                          2-Wheeler Loan (DPD 45) - Amit Singh
+                          2-Wheeler Loan (DPD 45)
                         </SelectItem>
                         <SelectItem value="personal_dpd_60" className="text-xs">
-                          Personal Loan (DPD 60) - Meera Patel
+                          Personal Loan (DPD 60)
                         </SelectItem>
                         <SelectItem value="vitanium_dpd_75" className="text-xs">
-                          Vitanium/Bharat Plays (DPD 75) - Suresh Reddy
+                          Business Loan (DPD 75)
                         </SelectItem>
 
                         {/* DPD 90-120 */}
@@ -612,13 +629,13 @@ export default function DebtCollectionDashboard() {
                           value="smartphone_dpd_95"
                           className="text-xs"
                         >
-                          Smartphone EMI (DPD 95) - Ravi Gupta
+                          Smartphone EMI (DPD 95)
                         </SelectItem>
                         <SelectItem
                           value="personal_dpd_105"
                           className="text-xs"
                         >
-                          Personal Loan (DPD 105) - Kavita Joshi
+                          Personal Loan (DPD 105)
                         </SelectItem>
 
                         {/* DPD 120+ */}
@@ -629,13 +646,13 @@ export default function DebtCollectionDashboard() {
                           value="personal_dpd_150"
                           className="text-xs"
                         >
-                          Personal Loan (DPD 150) - Deepak Shah
+                          Personal Loan (DPD 150)
                         </SelectItem>
                         <SelectItem
                           value="twowheeler_dpd_180"
                           className="text-xs"
                         >
-                          2-Wheeler Loan (DPD 180) - Anjali Nair
+                          2-Wheeler Loan (DPD 180)
                         </SelectItem>
                       </SelectContent>
                     </Select>
@@ -656,7 +673,7 @@ export default function DebtCollectionDashboard() {
                           handleInputChange("name", e.target.value)
                         }
                         placeholder="Enter customer name"
-                        className="mt-1 h-8 text-xs"
+                        className="mt-1 h-10 md:h-8 text-sm md:text-xs"
                       />
                     </div>
 
@@ -671,7 +688,7 @@ export default function DebtCollectionDashboard() {
                           handleInputChange("phone", e.target.value)
                         }
                         placeholder="Enter phone number"
-                        className="mt-1 h-8 text-xs"
+                        className="mt-1 h-10 md:h-8 text-sm md:text-xs"
                       />
                     </div>
                   </div>
@@ -689,7 +706,7 @@ export default function DebtCollectionDashboard() {
                           handleInputChange("email", e.target.value)
                         }
                         placeholder="Enter email address"
-                        className="mt-1 h-8 text-xs"
+                        className="mt-1 h-10 md:h-8 text-sm md:text-xs"
                       />
                     </div>
 
@@ -704,7 +721,7 @@ export default function DebtCollectionDashboard() {
                           handleInputChange("nbfcName", e.target.value)
                         }
                         placeholder="Enter lender name"
-                        className="mt-1 h-8 text-xs"
+                        className="mt-1 h-10 md:h-8 text-sm md:text-xs"
                       />
                     </div>
                   </div>
@@ -733,7 +750,7 @@ export default function DebtCollectionDashboard() {
                             handleInputChange("originalAmount", e.target.value)
                           }
                           placeholder="₹0"
-                          className="mt-1 h-8 text-xs"
+                          className="mt-1 h-10 md:h-8 text-sm md:text-xs"
                         />
                       </div>
 
@@ -754,7 +771,7 @@ export default function DebtCollectionDashboard() {
                             )
                           }
                           placeholder="₹0"
-                          className="mt-1 h-8 text-xs"
+                          className="mt-1 h-10 md:h-8 text-sm md:text-xs"
                         />
                       </div>
                     </div>
@@ -774,7 +791,7 @@ export default function DebtCollectionDashboard() {
                           onChange={(e) =>
                             handleInputChange("emiDueDate", e.target.value)
                           }
-                          className="mt-1 h-8 text-xs"
+                          className="mt-1 h-10 md:h-8 text-sm md:text-xs"
                         />
                       </div>
 
@@ -815,7 +832,7 @@ export default function DebtCollectionDashboard() {
                           onChange={(e) =>
                             handleInputChange("lastPaymentDate", e.target.value)
                           }
-                          className="mt-1 h-8 text-xs"
+                          className="mt-1 h-10 md:h-8 text-sm md:text-xs"
                         />
                       </div>
 
@@ -836,7 +853,7 @@ export default function DebtCollectionDashboard() {
                             )
                           }
                           placeholder="₹0"
-                          className="mt-1 h-8 text-xs"
+                          className="mt-1 h-10 md:h-8 text-sm md:text-xs"
                         />
                       </div>
                     </div>
@@ -846,7 +863,7 @@ export default function DebtCollectionDashboard() {
                   {isOngoingCall ? (
                     <Button
                       disabled
-                      className="w-full bg-green-600 text-white shadow-lg animate-pulse h-8"
+                      className="w-full bg-green-600 text-white shadow-lg animate-pulse h-12 md:h-8"
                       size="sm"
                     >
                       <Phone className="w-3 h-3 mr-1" />
@@ -862,7 +879,7 @@ export default function DebtCollectionDashboard() {
                         !formData.name ||
                         !formData.phone
                       }
-                      className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white shadow-lg disabled:opacity-50 disabled:cursor-not-allowed h-8"
+                      className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white shadow-lg disabled:opacity-50 disabled:cursor-not-allowed h-12 md:h-8"
                       size="sm"
                     >
                       {isConnecting ? (
@@ -893,8 +910,8 @@ export default function DebtCollectionDashboard() {
             </div>
 
             {/* Right Panel - Call Interface (View Only) */}
-            <div className="flex flex-col h-full">
-              <Card className="flex-1 flex flex-col overflow-hidden">
+            <div className="flex flex-col">
+              <Card className="flex flex-col lg:flex-1 lg:overflow-hidden lg:h-full">
                 <CardHeader className="pb-2 flex-shrink-0">
                   <CardTitle className="flex items-center justify-between text-base">
                     <span>Call Management</span>
@@ -919,7 +936,7 @@ export default function DebtCollectionDashboard() {
                     </div>
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="flex-1 overflow-y-auto space-y-4 min-h-0 text-sm">
+                <CardContent className="space-y-4 text-sm lg:flex-1 lg:overflow-y-auto lg:min-h-0">
                   {/* Recording Controls Section */}
                   <div>
                     <div className="flex items-center justify-between mb-2">
