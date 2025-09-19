@@ -893,141 +893,6 @@ export default function DebtCollectionDashboard() {
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4 text-sm lg:flex-1 lg:overflow-y-auto lg:min-h-0">
-                  {/* Recording Controls Section */}
-                  <div>
-                    <div className="flex items-center justify-between mb-2">
-                      <h3 className="text-xs font-semibold text-slate-700">
-                        Call Recording
-                      </h3>
-                      {recordingUrl && (
-                        <Button
-                          variant="outline"
-                          size="sm"
-                          onClick={() => window.open(recordingUrl, "_blank")}
-                          className="h-6 px-2 text-xs"
-                        >
-                          <Download className="w-3 h-3 mr-1" />
-                          Download
-                        </Button>
-                      )}
-                    </div>
-
-                    {recordingUrl ? (
-                      <div className="space-y-2">
-                        <audio controls className="w-full h-6">
-                          <source src={recordingUrl} type="video/mp4" />
-                          Your browser does not support the audio element.
-                        </audio>
-                      </div>
-                    ) : isCallActive ? (
-                      <div className="text-center py-3 text-slate-500 border rounded-lg bg-slate-50">
-                        <div className="w-4 h-4 mx-auto mb-1 opacity-50 bg-red-500 rounded-full animate-pulse"></div>
-                        <p className="text-xs">Recording in progress...</p>
-                        <p className="text-xs text-slate-400 mt-1">
-                          Room: {roomName}
-                        </p>
-                      </div>
-                    ) : (
-                      <div className="text-center py-3 text-slate-500 border rounded-lg bg-slate-50">
-                        <Download className="w-4 h-4 mx-auto mb-1 opacity-50" />
-                        <p className="text-xs">
-                          Recording will appear here after the call
-                        </p>
-                      </div>
-                    )}
-
-                    {isCallActive && (
-                      <div className="text-center space-y-1 mt-2">
-                        <p className="text-xs text-slate-500">
-                          Debug: isCallActive={String(isCallActive)},
-                          isOngoingCall={String(isOngoingCall)}, isPolling=
-                          {String(isPolling)}
-                        </p>
-                        <Button
-                          variant="destructive"
-                          onClick={endCall}
-                          className="w-full h-6 text-xs"
-                          size="sm"
-                        >
-                          <PhoneOff className="w-3 h-3 mr-1" />
-                          End Call
-                        </Button>
-                      </div>
-                    )}
-                  </div>
-
-                  <Separator className="my-2" />
-
-                  {/* Transcript Section */}
-                  <div>
-                    <div className="flex items-center justify-between mb-2">
-                      <h3 className="text-xs font-semibold text-slate-700">
-                        Call Transcript
-                      </h3>
-                      {transcriptData && (
-                        <Button
-                          variant="outline"
-                          size="sm"
-                          onClick={() =>
-                            window.open(
-                              `https://livekitblob.blob.core.windows.net/livekitblob/transcripts/${roomName}.json`,
-                              "_blank"
-                            )
-                          }
-                          className="h-6 px-2 text-xs"
-                        >
-                          <FileText className="w-3 h-3 mr-1" />
-                          Download
-                        </Button>
-                      )}
-                    </div>
-
-                    {transcriptData &&
-                    transcriptData.items &&
-                    transcriptData.items.length > 0 ? (
-                      <div className="space-y-2 max-h-[180px] overflow-y-auto border rounded-lg p-2 bg-slate-50">
-                        {transcriptData.items.map((item, index) => (
-                          <div
-                            key={item.id || index}
-                            className={`p-2 rounded-lg border-l-2 ${
-                              item.role === "assistant"
-                                ? "bg-blue-50 border-blue-400"
-                                : "bg-green-50 border-green-400"
-                            }`}
-                          >
-                            <div className="flex items-center justify-between mb-1">
-                              <span className="text-xs font-medium">
-                                {item.role === "assistant"
-                                  ? "Agent"
-                                  : "Customer"}
-                              </span>
-                              {item.interrupted && (
-                                <Badge
-                                  variant="destructive"
-                                  className="text-xs"
-                                >
-                                  Interrupted
-                                </Badge>
-                              )}
-                            </div>
-                            <p className="text-xs text-slate-700">
-                              {item.content.join(" ")}
-                            </p>
-                          </div>
-                        ))}
-                      </div>
-                    ) : (
-                      <div className="text-center py-3 text-slate-500 border rounded-lg bg-slate-50">
-                        <FileText className="w-4 h-4 mx-auto mb-1 opacity-50" />
-                        <p className="text-xs">
-                          Transcript will appear here after the call
-                        </p>
-                      </div>
-                    )}
-                  </div>
-
-                  <Separator className="my-2" />
-
                   {/* Outcomes Section */}
                   <div>
                     <div className="flex items-center justify-between mb-2">
@@ -1129,6 +994,139 @@ export default function DebtCollectionDashboard() {
                       </div>
                     )}
                   </div>
+                  <Separator className="my-2" />
+                  {/* Recording Controls Section */}
+                  <div>
+                    <div className="flex items-center justify-between mb-2">
+                      <h3 className="text-xs font-semibold text-slate-700">
+                        Call Recording
+                      </h3>
+                      {recordingUrl && (
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          onClick={() => window.open(recordingUrl, "_blank")}
+                          className="h-6 px-2 text-xs"
+                        >
+                          <Download className="w-3 h-3 mr-1" />
+                          Download
+                        </Button>
+                      )}
+                    </div>
+
+                    {recordingUrl ? (
+                      <div className="space-y-2">
+                        <audio controls className="w-full h-6">
+                          <source src={recordingUrl} type="video/mp4" />
+                          Your browser does not support the audio element.
+                        </audio>
+                      </div>
+                    ) : isCallActive ? (
+                      <div className="text-center py-3 text-slate-500 border rounded-lg bg-slate-50">
+                        <div className="w-4 h-4 mx-auto mb-1 opacity-50 bg-red-500 rounded-full animate-pulse"></div>
+                        <p className="text-xs">Recording in progress...</p>
+                        <p className="text-xs text-slate-400 mt-1">
+                          Room: {roomName}
+                        </p>
+                      </div>
+                    ) : (
+                      <div className="text-center py-3 text-slate-500 border rounded-lg bg-slate-50">
+                        <Download className="w-4 h-4 mx-auto mb-1 opacity-50" />
+                        <p className="text-xs">
+                          Recording will appear here after the call
+                        </p>
+                      </div>
+                    )}
+
+                    {isCallActive && (
+                      <div className="text-center space-y-1 mt-2">
+                        <p className="text-xs text-slate-500">
+                          Debug: isCallActive={String(isCallActive)},
+                          isOngoingCall={String(isOngoingCall)}, isPolling=
+                          {String(isPolling)}
+                        </p>
+                        <Button
+                          variant="destructive"
+                          onClick={endCall}
+                          className="w-full h-6 text-xs"
+                          size="sm"
+                        >
+                          <PhoneOff className="w-3 h-3 mr-1" />
+                          End Call
+                        </Button>
+                      </div>
+                    )}
+                  </div>
+                  <Separator className="my-2" />
+                  {/* Transcript Section */}
+                  <div>
+                    <div className="flex items-center justify-between mb-2">
+                      <h3 className="text-xs font-semibold text-slate-700">
+                        Call Transcript
+                      </h3>
+                      {transcriptData && (
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          onClick={() =>
+                            window.open(
+                              `https://livekitblob.blob.core.windows.net/livekitblob/transcripts/${roomName}.json`,
+                              "_blank"
+                            )
+                          }
+                          className="h-6 px-2 text-xs"
+                        >
+                          <FileText className="w-3 h-3 mr-1" />
+                          Download
+                        </Button>
+                      )}
+                    </div>
+
+                    {transcriptData &&
+                    transcriptData.items &&
+                    transcriptData.items.length > 0 ? (
+                      <div className="space-y-2 max-h-[180px] overflow-y-auto border rounded-lg p-2 bg-slate-50">
+                        {transcriptData.items.map((item, index) => (
+                          <div
+                            key={item.id || index}
+                            className={`p-2 rounded-lg border-l-2 ${
+                              item.role === "assistant"
+                                ? "bg-blue-50 border-blue-400"
+                                : "bg-green-50 border-green-400"
+                            }`}
+                          >
+                            <div className="flex items-center justify-between mb-1">
+                              <span className="text-xs font-medium">
+                                {item.role === "assistant"
+                                  ? "Agent"
+                                  : "Customer"}
+                              </span>
+                              {item.interrupted && (
+                                <Badge
+                                  variant="destructive"
+                                  className="text-xs"
+                                >
+                                  Interrupted
+                                </Badge>
+                              )}
+                            </div>
+                            <p className="text-xs text-slate-700">
+                              {item.content.join(" ")}
+                            </p>
+                          </div>
+                        ))}
+                      </div>
+                    ) : (
+                      <div className="text-center py-3 text-slate-500 border rounded-lg bg-slate-50">
+                        <FileText className="w-4 h-4 mx-auto mb-1 opacity-50" />
+                        <p className="text-xs">
+                          Transcript will appear here after the call
+                        </p>
+                      </div>
+                    )}
+                  </div>
+
+                  <Separator className="my-2" />
                 </CardContent>
               </Card>
             </div>
