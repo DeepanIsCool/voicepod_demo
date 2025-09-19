@@ -5,13 +5,6 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { Separator } from "@/components/ui/separator";
 import { Switch } from "@/components/ui/switch";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -250,24 +243,39 @@ export default function DebtCollectionDashboard() {
 
   const fillMockData = (scenarioKey: string) => {
     const mockData = mockLoanData[scenarioKey];
-    const { phone, name, email, nbfcName, originalAmount, outstandingAmount, lastPaymentAmount, ...otherData } = mockData;
-    
+    const {
+      phone,
+      name,
+      email,
+      nbfcName,
+      originalAmount,
+      outstandingAmount,
+      lastPaymentAmount,
+      ...otherData
+    } = mockData;
+
     // Generate random values for numeric fields
-    const randomOriginalAmount = (Math.floor(Math.random() * 400000) + 50000).toString(); // 50k to 450k
+    const randomOriginalAmount = (
+      Math.floor(Math.random() * 400000) + 50000
+    ).toString(); // 50k to 450k
     const randomOutstandingPercent = Math.random() * 0.4 + 0.5; // 50% to 90% outstanding
-    const randomOutstandingAmount = Math.floor(parseInt(randomOriginalAmount) * randomOutstandingPercent).toString();
-    const randomLastPaymentAmount = (Math.floor(Math.random() * 15000) + 2000).toString(); // 2k to 17k
-    
-    setFormData((prev) => ({ 
-      ...prev, 
+    const randomOutstandingAmount = Math.floor(
+      parseInt(randomOriginalAmount) * randomOutstandingPercent
+    ).toString();
+    const randomLastPaymentAmount = (
+      Math.floor(Math.random() * 15000) + 2000
+    ).toString(); // 2k to 17k
+
+    setFormData((prev) => ({
+      ...prev,
       ...otherData,
       originalAmount: randomOriginalAmount,
       outstandingAmount: randomOutstandingAmount,
       lastPaymentAmount: randomLastPaymentAmount,
-      name: "", 
-      email: "", 
-      nbfcName: "", 
-      phone: "" 
+      name: "",
+      email: "",
+      nbfcName: "",
+      phone: "",
     }));
   };
 
@@ -582,88 +590,6 @@ export default function DebtCollectionDashboard() {
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-3 text-sm lg:flex-1 lg:overflow-y-auto lg:min-h-0">
-                  {/* DPD Scenario Selection */}
-                  <div className="space-y-3">
-                    <h3 className="text-xs font-semibold text-slate-700 flex items-center">
-                      <FileText className="w-3 h-3 mr-1" />
-                      Demo DPD Scenarios (Auto-fills form)
-                    </h3>
-
-                    <Select onValueChange={(value) => fillMockData(value)}>
-                      <SelectTrigger className="h-10 md:h-8 text-sm md:text-xs">
-                        <SelectValue placeholder="Select a DPD scenario to auto-fill form..." />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {/* DPD 0-30 */}
-                        <div className="px-2 py-1 text-xs font-semibold text-green-700 bg-green-50">
-                          DPD 0-30 (Early Stage)
-                        </div>
-                        <SelectItem value="personal_dpd_15" className="text-xs">
-                          Personal Loan (DPD 15)
-                        </SelectItem>
-                        <SelectItem
-                          value="smartphone_dpd_25"
-                          className="text-xs"
-                        >
-                          Smartphone EMI (DPD 25)
-                        </SelectItem>
-
-                        {/* DPD 30-90 */}
-                        <div className="px-2 py-1 text-xs font-semibold text-yellow-700 bg-yellow-50 mt-1">
-                          DPD 30-90 (Mid Stage)
-                        </div>
-                        <SelectItem
-                          value="twowheeler_dpd_45"
-                          className="text-xs"
-                        >
-                          2-Wheeler Loan (DPD 45)
-                        </SelectItem>
-                        <SelectItem value="personal_dpd_60" className="text-xs">
-                          Personal Loan (DPD 60)
-                        </SelectItem>
-                        <SelectItem value="vitanium_dpd_75" className="text-xs">
-                          Business Loan (DPD 75)
-                        </SelectItem>
-
-                        {/* DPD 90-120 */}
-                        <div className="px-2 py-1 text-xs font-semibold text-orange-700 bg-orange-50 mt-1">
-                          DPD 90-120 (Late Stage)
-                        </div>
-                        <SelectItem
-                          value="smartphone_dpd_95"
-                          className="text-xs"
-                        >
-                          Smartphone EMI (DPD 95)
-                        </SelectItem>
-                        <SelectItem
-                          value="personal_dpd_105"
-                          className="text-xs"
-                        >
-                          Personal Loan (DPD 105)
-                        </SelectItem>
-
-                        {/* DPD 120+ */}
-                        <div className="px-2 py-1 text-xs font-semibold text-red-700 bg-red-50 mt-1">
-                          DPD 120+ (Critical Stage)
-                        </div>
-                        <SelectItem
-                          value="personal_dpd_150"
-                          className="text-xs"
-                        >
-                          Personal Loan (DPD 150)
-                        </SelectItem>
-                        <SelectItem
-                          value="twowheeler_dpd_180"
-                          className="text-xs"
-                        >
-                          2-Wheeler Loan (DPD 180)
-                        </SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-
-                  <Separator className="my-2" />
-
                   {/* Basic Information */}
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                     <div>
@@ -730,14 +656,40 @@ export default function DebtCollectionDashboard() {
                     </div>
                   </div>
 
-                  <Separator className="my-2" />
-
                   {/* Loan Details */}
                   <div className="space-y-3">
-                    <h3 className="text-xs font-semibold text-slate-700 flex items-center">
-                      <DollarSign className="w-3 h-3 mr-1" />
-                      Loan Details
-                    </h3>
+                    <div className="flex items-center justify-between">
+                      <h3 className="text-xs font-semibold text-slate-700 flex items-center">
+                        <DollarSign className="w-3 h-3 mr-1" />
+                        Loan Details
+                      </h3>
+                      <Button
+                        onClick={() => {
+                          // Generate random scenario
+                          const scenarios = [
+                            "personal_dpd_15",
+                            "smartphone_dpd_25",
+                            "twowheeler_dpd_45",
+                            "personal_dpd_60",
+                            "vitanium_dpd_75",
+                            "smartphone_dpd_95",
+                            "personal_dpd_105",
+                            "personal_dpd_150",
+                            "twowheeler_dpd_180",
+                          ];
+                          const randomScenario =
+                            scenarios[
+                              Math.floor(Math.random() * scenarios.length)
+                            ];
+                          fillMockData(randomScenario);
+                        }}
+                        variant="outline"
+                        size="sm"
+                        className="h-7 text-xs bg-white border-gray-200 text-gray-700 hover:bg-gray-50 hover:text-gray-900 shadow-sm"
+                      >
+                        Generate
+                      </Button>
+                    </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                       <div>
