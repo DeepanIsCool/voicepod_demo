@@ -194,49 +194,6 @@ export function CallAnalysisDashboard({
                 )}
               </CardContent>
             </Card>
-
-            {/* Call Stats */}
-            <Card className="bg-white shadow-sm border-gray-200">
-              <CardHeader className="pb-4">
-                <CardTitle className="text-lg font-medium text-gray-900">
-                  Call Stats
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-4">
-                  <div className="flex justify-between items-center">
-                    <span className="text-sm text-gray-600">Duration</span>
-                    <span className="text-sm font-medium text-gray-900">
-                      2:34
-                    </span>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span className="text-sm text-gray-600">Language</span>
-                    <span className="text-sm font-medium text-gray-900">
-                      Hindi
-                    </span>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span className="text-sm text-gray-600">Compliance</span>
-                    <Badge
-                      variant="outline"
-                      className="bg-green-50 text-green-700 border-green-200"
-                    >
-                      95% ✓
-                    </Badge>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span className="text-sm text-gray-600">Sentiment</span>
-                    <Badge
-                      variant="outline"
-                      className="bg-blue-50 text-blue-700 border-blue-200"
-                    >
-                      Cooperative
-                    </Badge>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
           </div>
 
           {/* Right Column - Key Outcomes */}
