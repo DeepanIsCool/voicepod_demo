@@ -1,11 +1,11 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { Button } from "@/components/ui/button"
-import { DemoModal } from "@/components/demo-modal"
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { DemoModal } from "@/components/demo-modal";
 
 export function Header() {
-  const [isDemoModalOpen, setIsDemoModalOpen] = useState(false)
+  const [isDemoModalOpen, setIsDemoModalOpen] = useState(false);
 
   return (
     <>
@@ -14,9 +14,13 @@ export function Header() {
           {/* Logo */}
           <div className="flex items-center space-x-2">
             <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary">
-              <span className="text-sm font-bold text-primary-foreground">DW</span>
+              <span className="text-sm font-bold text-primary-foreground">
+                DW
+              </span>
             </div>
-            <span className="text-xl font-bold text-foreground">DebtWise AI</span>
+            <span className="text-xl font-bold text-foreground">
+              DebtWise AI
+            </span>
           </div>
 
           {/* Navigation */}
@@ -26,12 +30,6 @@ export function Header() {
               className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
             >
               Features
-            </a>
-            <a
-              href="#pricing"
-              className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
-            >
-              Pricing
             </a>
             <a
               href="#why-ai"
@@ -60,7 +58,10 @@ export function Header() {
         </div>
       </header>
 
-      <DemoModal isOpen={isDemoModalOpen} onClose={() => setIsDemoModalOpen(false)} />
+      <DemoModal
+        isOpen={isDemoModalOpen}
+        onClose={() => setIsDemoModalOpen(false)}
+      />
     </>
-  )
+  );
 }
