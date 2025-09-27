@@ -1,8 +1,8 @@
 "use client";
 
-import { useState } from "react";
-import { Button } from "@/components/ui/button";
 import { DemoModal } from "@/components/demo-modal";
+import { Button } from "@/components/ui/button";
+import { useState } from "react";
 
 export function Header() {
   const [isDemoModalOpen, setIsDemoModalOpen] = useState(false);
@@ -38,7 +38,9 @@ export function Header() {
               Why AI?
             </a>
             <Button
-              onClick={() => setIsDemoModalOpen(true)}
+              onClick={() =>
+                window.open("https://debtwise-demo.vercel.app/", "_blank")
+              }
               className="bg-primary hover:bg-primary/90 text-primary-foreground"
             >
               Try Live Demo
@@ -48,7 +50,9 @@ export function Header() {
           {/* Mobile menu button */}
           <div className="md:hidden">
             <Button
-              onClick={() => setIsDemoModalOpen(true)}
+              onClick={() =>
+                window.open("https://debtwise-demo.vercel.app/", "_blank")
+              }
               size="sm"
               className="bg-primary hover:bg-primary/90 text-primary-foreground"
             >

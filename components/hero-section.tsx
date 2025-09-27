@@ -1,11 +1,11 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { Button } from "@/components/ui/button"
-import { DemoModal } from "@/components/demo-modal"
+import { DemoModal } from "@/components/demo-modal";
+import { Button } from "@/components/ui/button";
+import { useState } from "react";
 
 export function HeroSection() {
-  const [isDemoModalOpen, setIsDemoModalOpen] = useState(false)
+  const [isDemoModalOpen, setIsDemoModalOpen] = useState(false);
 
   return (
     <>
@@ -14,20 +14,30 @@ export function HeroSection() {
           <div className="mx-auto max-w-4xl text-center">
             {/* Main headline */}
             <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-6xl lg:text-7xl text-balance">
-              You're paying <span className="text-primary">₹5.67 per minute</span> for human agents.
+              You're paying{" "}
+              <span className="text-primary">₹5.67 per minute</span> for human
+              agents.
             </h1>
 
             {/* Sub-headline */}
             <p className="mt-8 text-lg leading-8 text-muted-foreground sm:text-xl lg:text-2xl text-pretty max-w-3xl mx-auto">
-              Our AI costs just <span className="font-semibold text-primary">₹5.00 per minute</span>. No salaries. No
-              overheads. Just infinite scalability and{" "}
-              <span className="font-semibold text-foreground">100% compliance guaranteed</span>.
+              Our AI costs just{" "}
+              <span className="font-semibold text-primary">
+                ₹5.00 per minute
+              </span>
+              . No salaries. No overheads. Just infinite scalability and{" "}
+              <span className="font-semibold text-foreground">
+                100% compliance guaranteed
+              </span>
+              .
             </p>
 
             {/* CTA Button */}
             <div className="mt-12">
               <Button
-                onClick={() => setIsDemoModalOpen(true)}
+                onClick={() =>
+                  window.open("https://debtwise-demo.vercel.app/", "_blank")
+                }
                 size="lg"
                 className="bg-primary hover:bg-primary/90 text-primary-foreground text-lg px-8 py-4 h-auto"
               >
@@ -54,7 +64,10 @@ export function HeroSection() {
         </div>
       </section>
 
-      <DemoModal isOpen={isDemoModalOpen} onClose={() => setIsDemoModalOpen(false)} />
+      <DemoModal
+        isOpen={isDemoModalOpen}
+        onClose={() => setIsDemoModalOpen(false)}
+      />
     </>
-  )
+  );
 }
